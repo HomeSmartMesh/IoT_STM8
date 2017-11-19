@@ -47,8 +47,10 @@ BYTE tx_data[RF_MAX_DATASIZE];
 
 void rf_alive_bcast()
 {
+    
     tx_data[rfi_size] = rfi_broadcast_header_size;
-    tx_data[rfi_pid] = rf_pid_0xF5_alive;
+    tx_data[rfi_ctr] = rf_ctr_Broadcast | 2;//time to live is 2
+    tx_data[rfi_pid] = rf_pid_alive;
     tx_data[rfi_src] = NodeId;
     crc_set(tx_data);
    
@@ -302,6 +304,7 @@ int main( void )
 	//uart_init();//UART Disabled
 	//Applies the compile time configured parameters from nRF_Configuration.h
 	nRF_Config();
+    nRF_SelectChannel(10);
 
 	__enable_interrupt();
     //

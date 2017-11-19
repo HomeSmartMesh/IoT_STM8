@@ -19,7 +19,7 @@
 
 void rf_get_tx_alive_3B(BYTE NodeId, BYTE* tx_data)
 {
-      tx_data[0]= rf_pid_0xF5_alive;
+      tx_data[0]= rf_pid_alive;
       tx_data[1]= NodeId;
       tx_data[2]= tx_data[0] ^ NodeId;
 }
@@ -35,7 +35,7 @@ void rx_alive(BYTE src_NodeId)
 // Reset
 void rf_get_tx_reset_3B(BYTE NodeId, BYTE* tx_data)
 {
-      tx_data[0]= rf_pid_0xC9_reset;
+      tx_data[0]= rf_pid_reset;
       tx_data[1]= NodeId;
       tx_data[2]= tx_data[0] ^ NodeId;
 }

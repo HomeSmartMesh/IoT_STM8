@@ -19,73 +19,88 @@
   <group>
     <name>libs</name>
     <file>
-      <name>$PROJ_DIR$\..\..\..\libs\clock_led.c</name>
+      <name>$PROJ_DIR$\..\..\libs\bme280.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\..\libs\clock_led.h</name>
+      <name>$PROJ_DIR$\..\..\libs\bme280.h</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\..\libs\cmdutils.c</name>
+      <name>$PROJ_DIR$\..\..\libs\clock_led.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\..\libs\cmdutils.h</name>
+      <name>$PROJ_DIR$\..\..\libs\clock_led.h</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\..\libs\commonTypes.h</name>
+      <name>$PROJ_DIR$\..\..\libs\cmdutils.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\..\libs\nRF.c</name>
+      <name>$PROJ_DIR$\..\..\libs\cmdutils.h</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\..\libs\nRF.h</name>
+      <name>$PROJ_DIR$\..\..\libs\commonTypes.h</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\..\libs\nRF_IRQ_stm8x.c</name>
+      <name>$PROJ_DIR$\..\..\libs\eeprom.h</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\..\libs\nRF_IRQ_stm8x.h</name>
+      <name>$PROJ_DIR$\..\..\libs\i2c_stm8x.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\..\libs\nRF_RegText.c</name>
+      <name>$PROJ_DIR$\..\..\libs\i2c_stm8x.h</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\..\libs\nRF_RegText.h</name>
+      <name>$PROJ_DIR$\..\..\libs\nRF.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\..\libs\nRF_SPI.c</name>
+      <name>$PROJ_DIR$\..\..\libs\nRF.h</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\..\libs\nRF_SPI.h</name>
+      <name>$PROJ_DIR$\..\..\libs\nRF_IRQ_stm8x.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\..\libs\nRF_Tx.c</name>
+      <name>$PROJ_DIR$\..\..\libs\nRF_IRQ_stm8x.h</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\..\libs\nRF_Tx.h</name>
+      <name>$PROJ_DIR$\..\..\libs\nRF_RegText.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\..\libs\rf_protocol.c</name>
+      <name>$PROJ_DIR$\..\..\libs\nRF_RegText.h</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\..\libs\rf_protocol.h</name>
+      <name>$PROJ_DIR$\..\..\libs\nRF_SPI.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\..\libs\spi_stm8x.c</name>
+      <name>$PROJ_DIR$\..\..\libs\nRF_SPI.h</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\..\libs\spi_stm8x.h</name>
+      <name>$PROJ_DIR$\..\..\libs\nRF_Tx.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\..\libs\uart.c</name>
+      <name>$PROJ_DIR$\..\..\libs\nRF_Tx.h</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\..\libs\uart.h</name>
+      <name>$PROJ_DIR$\..\..\libs\rf_protocol.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\..\libs\uart_stm8x.c</name>
+      <name>$PROJ_DIR$\..\..\libs\rf_protocol.h</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\..\libs\uart_stm8x.h</name>
+      <name>$PROJ_DIR$\..\..\libs\spi_stm8x.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\libs\spi_stm8x.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\libs\uart.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\libs\uart.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\libs\uart_stm8x.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\libs\uart_stm8x.h</name>
     </file>
   </group>
   <file>
