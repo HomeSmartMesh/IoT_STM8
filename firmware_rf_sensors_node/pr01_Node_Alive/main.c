@@ -26,16 +26,19 @@ BYTE NodeId;
 #include "rf_protocol.h"
 #include "cmdutils.h"
 
-BYTE tx_data[RF_MAX_DATASIZE];
-
 //---------------------- Active Halt Mode :
 // - CPU and Peripheral clocks stopped, RTC running
 // - wakeup from RTC, or external/Reset
 
 
+//RF_MAX_DATASIZE must be used as the nRF_Transmit rely on it for a zero copy frame update
+BYTE tx_data[RF_MAX_DATASIZE];
+
+//NODE_I2C_SET means BME280 is there
 //Magnet B0 is Top
 //Magnet D0 is side
 //------------------------------ Node Config ---------------------------------
+//0x1010
 #define NODE_MAGNET_B_SET               *(char*)(NODE_HW_CONFIG+0x00)
 #define NODE_MAGNET_B_INTERRUPT			*(char*)(NODE_HW_CONFIG+0x01)
 #define NODE_MAGNET_D_SET               *(char*)(NODE_HW_CONFIG+0x02)
@@ -43,11 +46,14 @@ BYTE tx_data[RF_MAX_DATASIZE];
 #define NODE_I2C_SET                    *(char*)(NODE_HW_CONFIG+0x04)
 #define NODE_MAX44009_SET               *(char*)(NODE_HW_CONFIG+0x05)
 
+//0x1020
 #define SLEEP_PERIOD_SEC				*(char*)(NODE_FUNCTIONAL_CONFIG+0x00)
+#define STARTUP_SEND_CALIB_INFO			*(char*)(NODE_FUNCTIONAL_CONFIG+0x01)
+#define USE_UART						*(char*)(NODE_FUNCTIONAL_CONFIG+0x02)
+#define RF_CHANNEL						*(char*)(NODE_FUNCTIONAL_CONFIG+0x03)
 
 void rf_alive_bcast()
 {
-    
     tx_data[rfi_size] = rfi_broadcast_header_size;
     tx_data[rfi_ctr] = rf_ctr_Broadcast | 2;//time to live is 2
     tx_data[rfi_pid] = rf_pid_alive;
@@ -57,16 +63,16 @@ void rf_alive_bcast()
 	nRF_Transmit_Wait_Down(tx_data,rfi_broadcast_header_size+crc_size);
 }
 
-void RfSwitch(unsigned char state)
+void rf_magnet_bcast(unsigned char state)
 {
-	/*
-      unsigned char Tx_Data[4];
-      Tx_Data[0]=0xC5;
-      Tx_Data[1]=NodeId;
-      Tx_Data[2]=state;
-      Tx_Data[3]= Tx_Data[0] ^ NodeId ^ state;
-      nRF_Transmit_Wait_Down(Tx_Data,4);
-	  */
+    tx_data[rfi_size] = rfi_broadcast_header_size+1;
+    tx_data[rfi_ctr] = rf_ctr_Broadcast | 2;//time to live is 2
+    tx_data[rfi_pid] = rf_pid_magnet;
+    tx_data[rfi_src] = NodeId;
+    tx_data[rfi_broadcast_payload_offset] = state;
+    crc_set(tx_data);
+   
+	nRF_Transmit_Wait_Down(tx_data,rfi_broadcast_header_size+1+crc_size);
 }
 
 
@@ -129,9 +135,9 @@ __interrupt void IRQHandler_Pin0(void)
   if(EXTI_SR1_P0F == 1)
   {
 	if(NODE_MAGNET_B_SET == 1)
-		RfSwitch(PB_IDR_IDR0);//B0 is Side
+		rf_magnet_bcast(PB_IDR_IDR0);//B0 is Side
 	else if(NODE_MAGNET_D_SET == 1)
-		RfSwitch(PD_IDR_IDR0);//D0 is Top
+		rf_magnet_bcast(PD_IDR_IDR0);//D0 is Top
   }
   EXTI_SR1 = 0xFF;//acknowledge all interrupts pins
 }
@@ -143,9 +149,7 @@ __interrupt void IRQHandler_RTC(void)
   if(RTC_ISR2_WUTF)
   {
     RTC_ISR2_WUTF = 0;
-    
   }
-  
 }
 
 
@@ -156,44 +160,32 @@ void SMT8L_Switch_ToHSI()
   while (CLK_SWCR_SWBSY != 0);        //  Pause while the clock switch is busy.
 }
 
-
-void Init_Magnet_PB0()
+void Init_Magnet_PB0_Interrupt()
 {
-  if(NODE_MAGNET_B_SET == 1)
-  {
-      PB_DDR_bit.DDR0 = 0;//  0: Input
-      PB_CR1_bit.C10 = 0; //  0: Floating
-          if(NODE_MAGNET_B_INTERRUPT == 1)
-		  {
-			PB_CR2_bit.C20 = 1; // Exernal interrupt enabled
-			EXTI_CR1_P0IS = 3;//Rising and Falling edges, interrupt on events - bit 0
-		  }
-		  else
-		  {
-			PB_CR2_bit.C20 = 0; // Exernal interrupt disabled
-		  }
-  }
+      if(NODE_MAGNET_B_INTERRUPT == 1)
+	  {
+		PB_CR2_bit.C20 = 1; // Exernal interrupt enabled
+		EXTI_CR1_P0IS = 3;//Rising and Falling edges, interrupt on events - bit 0
+	  }
+	  else
+	  {
+		PB_CR2_bit.C20 = 0; // Exernal interrupt disabled
+	  }
     //EXTI_CR3_PBIS = 00;//Falling edge and low level - Port B
 }
 
-void Init_Magnet_PD0()
+void Init_Magnet_PD0_Interrupt()
 {
-  if(NODE_MAGNET_B_SET == 1)
-  {
-    PD_DDR_bit.DDR0 = 0;//  0: Input
-    PD_CR1_bit.C10 = 0; //  0: Floating
 	if(NODE_MAGNET_D_INTERRUPT == 1)
 	{
-    	PD_CR2_bit.C20 = 1; // Exernal interrupt enabled
-    	EXTI_CR1_P0IS = 3;//Rising and Falling edges, interrupt on events - bit 0
+		PD_CR2_bit.C20 = 1; // Exernal interrupt enabled
+		EXTI_CR1_P0IS = 3;//Rising and Falling edges, interrupt on events - bit 0
 	}
 	else
 	{
-   		PD_CR2_bit.C20 = 0; // Exernal interrupt disabled
+		PD_CR2_bit.C20 = 0; // Exernal interrupt disabled
 	}
-  }
 }
-
 
 void Initialise_Test_GPIO_A2()
 {
@@ -227,7 +219,13 @@ void configure_All_PIO()
 	PA_ODR_bit.ODR3 = 0;//Low
 
 	//B0 - Magnet-1 Side
-	if(NODE_MAGNET_B_SET != 1)
+	if(NODE_MAGNET_B_SET == 1)
+	{
+		PB_DDR_bit.DDR0 = 0;//  0: Input
+		PB_CR1_bit.C10 = 0; //  0: Floating
+		Init_Magnet_PB0_Interrupt();//conditionned config with flags
+	}
+	else
 	{
 		PB_DDR_bit.DDR0 = 0;//output
 		PB_ODR_bit.ODR0 = 0;//Low
@@ -257,12 +255,19 @@ void configure_All_PIO()
 	PB_DDR_bit.DDR7 = 0;//input
 	//PB_ODR_ODR7 = 1;
 
-	if(NODE_I2C_SET != 1)
+	if(NODE_I2C_SET == 1)
 	{
-		//C0 - I�C SDA
+		PC_DDR_bit.DDR0 = 0;// 0: Input - 1: Output
+		PC_CR1_C10 = 0;// Input mode: 0: Floating input - 1: Input with pull-up // Output mode: 0: Pseudo open drain 1: Push-pull
+		PC_DDR_bit.DDR1 = 0;// 0: Input - 1: Output
+		PC_CR1_C11 = 0;// Input mode: 0: Floating input - 1: Input with pull-up // Output mode: 0: Pseudo open drain 1: Push-pull
+	}
+	else
+	{
+		//C0 - I2C SDA
 		PC_DDR_bit.DDR0 = 1;//output
 		PC_ODR_bit.ODR0 = 0;//Low
-		//C1 - I�C SCL
+		//C1 - I2C SCL
 		PC_DDR_bit.DDR1 = 1;//output
 		PC_ODR_bit.ODR1 = 0;//Low
 	}
@@ -278,7 +283,13 @@ void configure_All_PIO()
 	PC_ODR_bit.ODR6 = 0;//Low
 
 	//D0 - Magnet-2 Top
-	if(NODE_MAGNET_D_SET != 1)
+	if(NODE_MAGNET_D_SET == 1)
+	{
+	    PD_DDR_bit.DDR0 = 0;//  0: Input
+	    PD_CR1_bit.C10 = 0; //  0: Floating
+		Init_Magnet_PD0_Interrupt();//conditionned config with flags
+	}
+	else
 	{
 		PD_DDR_bit.DDR0 = 1;//output
 		PD_ODR_bit.ODR0 = 0;//Low
@@ -286,32 +297,59 @@ void configure_All_PIO()
 
 }
 
+void check_minimal_Power()
+{
+	if(USE_UART)
+	{
+		SYSCFG_RMPCR1_USART1TR_REMAP = 1; // Remap 01: USART1_TX on PA2 and USART1_RX on PA3
+		uart_init();//Tx only
+	}
+	nRF_Config();
+    nRF_SelectChannel(RF_CHANNEL);
+	nRF_SetMode_PowerDown();
+        
+	configure_All_PIO();
+	//STM8L(halt) + nRF(PowerDown) + (nothing) => 9 uA
+	__enable_interrupt();
+	while (1)
+	{
+		__halt();
+	}
+}
+
 int main( void )
 {
 	NodeId = *NODE_ID;
 
 	configure_All_PIO();
-	Init_Magnet_PB0();//conditionned config with flags
-	Init_Magnet_PD0();//conditionned config with flags
 	
 	Initialise_STM8L_Clock();		//here enable the RTC clock
 
 	//#issue cannot change after first config
 	sleep(SLEEP_PERIOD_SEC);						//this is a low power halt sleep 
 	Initialise_STM8L_RTC_LowPower(SLEEP_PERIOD_SEC);//configure the sleep cycle for a period of 30 sec
-    
-	//SYSCFG_RMPCR1_USART1TR_REMAP = 1; // Remap 01: USART1_TX on PA2 and USART1_RX on PA3
-	//uart_init();//UART Disabled
+	
+#ifdef CheckMinimalPower
+	check_minimal_Power();
+#endif
+
+	if(USE_UART)
+	{
+		SYSCFG_RMPCR1_USART1TR_REMAP = 1; // Remap 01: USART1_TX on PA2 and USART1_RX on PA3
+		uart_init();//Tx only
+	}
 	//Applies the compile time configured parameters from nRF_Configuration.h
 	nRF_Config();
-    nRF_SelectChannel(10);
+    nRF_SelectChannel(RF_CHANNEL);
+	//nRF_SetMode_PowerDown();
 
 	__enable_interrupt();
-    //
-    // Main loop
-    //
-    while (1)
-    {
+	//
+	// Main loop
+	//
+	while (1)
+	{
+		//Important to set the halt in the beginning so that battery reset do not retransmit directly
 		__halt();
 
 		//here we wake up from halt
