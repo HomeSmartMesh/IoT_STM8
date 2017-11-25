@@ -8,7 +8,7 @@
  * $Revision:
  *
  */
-
+#include "uart_config.h"
 //-------------------------------------------------------------------------------------------------
 //----------------------------------- User Editable Section ---------------------------------------
 //-------------------------------------------------------------------------------------------------
@@ -39,9 +39,16 @@
 
 //--------------------------------Debug log Enable or disable-----------------------------------
 // set to 1 or 0
-#define Enable_Debug_IRQHandler_PortD_nRF 		1
-#define Enable_Debug_nRF_Config 				1
-#define Enable_Debug_nRF_SetMode_RX				1
+#if UART_DISABLE == 0
+    //UART being used
+    #define Enable_Debug_IRQHandler_PortD_nRF 		1
+    #define Enable_Debug_nRF_Config 				1
+    #define Enable_Debug_nRF_SetMode_RX				1
+#else
+    #define Enable_Debug_IRQHandler_PortD_nRF 		0
+    #define Enable_Debug_nRF_Config 				0
+    #define Enable_Debug_nRF_SetMode_RX				0
+#endif
 //-------------------------------------------------------------------------------------------------
 //-------------------------------- End of User Editable Section -----------------------------------
 //-------------------------------------------------------------------------------------------------
