@@ -12,14 +12,7 @@
 
 #include "uart_config.h"
 
-#if UART_DISABLE == 1
-
-	#define uart_init(X)
-	#define putc(X)
-	#define printf(X)
-
-#else
-
+#if UART_ENABLE == 1
 	#define uart_init uart_init_impl
 	#define putc putc_impl
 	#define printf printf_impl
@@ -27,8 +20,11 @@
 	void uart_init();
 	void putc(char c);
 	void printf(char const *message);
-
-#endif /*UART_DISABLE == 1*/
+#else
+	#define uart_init(X)
+	#define putc(X)
+	#define printf(X)
+#endif /*UART_ENABLE == 1*/
 
 
 //if interrupt mode, otherwise not declared

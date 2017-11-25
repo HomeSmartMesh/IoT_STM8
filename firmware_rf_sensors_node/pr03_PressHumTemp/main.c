@@ -6,10 +6,12 @@
 #include "deviceType.h"
 #include "nRF_Configuration.h"
 
-//for config
+#include "nRF_SPI.h"
+//for nRF_SetMode_TX()
 #include "nRF.h"
-//for transmit
+
 #include "nRF_Tx.h"
+#include "nRF_RegText.h"
 
 #include "uart.h"
 #include "clock_led.h"
@@ -54,20 +56,24 @@ BYTE tx_data[RF_MAX_DATASIZE];
 
 //0x1020
 #define SLEEP_PERIOD_SEC				*(char*)(NODE_FUNCTIONAL_CONFIG+0x00)
-#define STARTUP_SEND_CALIB_INFO			*(char*)(NODE_FUNCTIONAL_CONFIG+0x01)
-#define USE_UART						*(char*)(NODE_FUNCTIONAL_CONFIG+0x02)
+#if UART_ENABLE == 1
+	#define STARTUP_SEND_CALIB_INFO			1
+#else
+	#define STARTUP_SEND_CALIB_INFO			0
+#endif
+//#define USE_UART						*(char*)(NODE_FUNCTIONAL_CONFIG+0x02)
 #define RF_CHANNEL						*(char*)(NODE_FUNCTIONAL_CONFIG+0x03)
 
-void RfSwitch(unsigned char state)
+void rf_magnet_bcast(unsigned char state)
 {
-    tx_data[rfi_size] = rfi_broadcast_header_size + 1;//Header + Paloayd
+    tx_data[rfi_size] = rfi_broadcast_header_size+1;
     tx_data[rfi_ctr] = rf_ctr_Broadcast | 2;//time to live is 2
     tx_data[rfi_pid] = rf_pid_magnet;
     tx_data[rfi_src] = NodeId;
-	tx_data[rfi_broadcast_payload_offset] = state;
+    tx_data[rfi_broadcast_payload_offset] = state;
     crc_set(tx_data);
-	BYTE rf_msg_size = rfi_broadcast_header_size + 1 + crc_size;
-	nRF_Transmit_Wait_Down(tx_data,rf_msg_size);
+   
+	nRF_Transmit_Wait_Down(tx_data,rfi_broadcast_header_size+1+crc_size);
 }
 
   
@@ -161,9 +167,9 @@ __interrupt void IRQHandler_Pin0(void)
   if(EXTI_SR1_P0F == 1)
   {
 	if(NODE_MAGNET_B_SET == 1)
-		RfSwitch(PB_IDR_IDR0);//B0 is Side
+		rf_magnet_bcast(PB_IDR_IDR0);//B0 is Side
 	else if(NODE_MAGNET_D_SET == 1)
-		RfSwitch(PD_IDR_IDR0);//D0 is Top
+		rf_magnet_bcast(PD_IDR_IDR0);//D0 is Top
   }
   EXTI_SR1 = 0xFF;//acknowledge all interrupts pins
 }
@@ -175,9 +181,7 @@ __interrupt void IRQHandler_RTC(void)
   if(RTC_ISR2_WUTF)
   {
     RTC_ISR2_WUTF = 0;
-    
   }
-  
 }
 
 
@@ -302,7 +306,14 @@ void configure_All_PIO()
 	PB_DDR_bit.DDR7 = 0;//input
 	//PB_ODR_ODR7 = 1;
 
-	if(NODE_I2C_SET != 1)
+	if(NODE_I2C_SET == 1)
+	{
+		PC_DDR_bit.DDR0 = 0;// 0: Input - 1: Output
+		PC_CR1_C10 = 0;// Input mode: 0: Floating input - 1: Input with pull-up // Output mode: 0: Pseudo open drain 1: Push-pull
+		PC_DDR_bit.DDR1 = 0;// 0: Input - 1: Output
+		PC_CR1_C11 = 0;// Input mode: 0: Floating input - 1: Input with pull-up // Output mode: 0: Pseudo open drain 1: Push-pull
+	}
+	else
 	{
 		//C0 - I2C SDA
 		PC_DDR_bit.DDR0 = 1;//output
@@ -339,12 +350,14 @@ void configure_All_PIO()
 
 void check_minimal_Power()
 {
-	if(USE_UART)
-	{
+	#if UART_ENABLE == 1
 		SYSCFG_RMPCR1_USART1TR_REMAP = 1; // Remap 01: USART1_TX on PA2 and USART1_RX on PA3
 		uart_init();//Tx only
+	#endif
+	if(NODE_I2C_SET == 1)
+	{
+		I2C_Init();
 	}
-	I2C_Init();
 	nRF_Config();
     nRF_SelectChannel(RF_CHANNEL);
 	nRF_SetMode_PowerDown();
@@ -371,15 +384,14 @@ int main( void )
 	sleep(SLEEP_PERIOD_SEC);						//this is a low power halt sleep 
 	Initialise_STM8L_RTC_LowPower(SLEEP_PERIOD_SEC);//configure the sleep cycle for a period of 30 sec
 	
-#ifdef CheckMinimalPower
-	check_minimal_Power();
-#endif
+	#ifdef CheckMinimalPower
+		check_minimal_Power();
+	#endif
 
-	if(USE_UART)
-	{
+	#if UART_ENABLE == 1
 		SYSCFG_RMPCR1_USART1TR_REMAP = 1; // Remap 01: USART1_TX on PA2 and USART1_RX on PA3
 		uart_init();//Tx only
-	}
+	#endif
 	if(NODE_I2C_SET == 1)
 	{
 		I2C_Init();
@@ -388,7 +400,11 @@ int main( void )
 	//Applies the compile time configured parameters from nRF_Configuration.h
 	nRF_Config();
     nRF_SelectChannel(RF_CHANNEL);
-	nRF_SetMode_PowerDown();
+
+
+	#if UART_ENABLE == 1
+		nRF_PrintInfo();
+	#endif
 
 	__enable_interrupt();
 	//

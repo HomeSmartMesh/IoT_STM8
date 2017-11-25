@@ -15,6 +15,7 @@
 #include "uart.h"
 #include "clock_led.h"
 
+#include "i2c_stm8x.h"
 
 #define EEPROM_Offset 0x1000
 #define NODE_HW_CONFIG	EEPROM_Offset+0x10
@@ -302,11 +303,14 @@ void configure_All_PIO()
 
 void check_minimal_Power()
 {
-	#if UART_DISABLE != 1
+	#if UART_ENABLE == 1
 		SYSCFG_RMPCR1_USART1TR_REMAP = 1; // Remap 01: USART1_TX on PA2 and USART1_RX on PA3
 		uart_init();//Tx only
 	#endif
-
+	if(NODE_I2C_SET == 1)
+	{
+		I2C_Init();
+	}
 	nRF_Config();
     nRF_SelectChannel(RF_CHANNEL);
 	nRF_SetMode_PowerDown();
@@ -342,7 +346,7 @@ int main( void )
 		check_minimal_Power();
 	#endif
 
-	#if UART_DISABLE != 1
+	#if UART_ENABLE == 1
 		SYSCFG_RMPCR1_USART1TR_REMAP = 1; // Remap 01: USART1_TX on PA2 and USART1_RX on PA3
 		uart_init();//Tx only
 	#endif
@@ -351,10 +355,9 @@ int main( void )
     nRF_SelectChannel(RF_CHANNEL);
 
 
-	#if UART_DISABLE != 1
+	#if UART_ENABLE == 1
 		nRF_PrintInfo();
 	#endif
-	//nRF_SetMode_PowerDown();
 
 	__enable_interrupt();
 	//

@@ -8,7 +8,7 @@
  * $Revision:
  *
  */
-
+#include "uart_config.h"
 //-------------------------------------------------------------------------------------------------
 //----------------------------------- User Editable Section ---------------------------------------
 //-------------------------------------------------------------------------------------------------
@@ -31,7 +31,7 @@
 #define SPI_Write_Register_EN_AA		0x00
 //disable retransmission
 #define SPI_Write_Register_SETUP_RETR	0x00
- //RF data rate : 1=> 1Mb, 2=> 2Mb, 250=> 250Kb
+//RF data rate : 1=> 1Mb, 2=> 2Mb, 250=> 250Kb
 #define RF_Data_Rate    	2
 
 //Address width in bytes 3, 4 or 5 Bytes 
@@ -39,9 +39,16 @@
 
 //--------------------------------Debug log Enable or disable-----------------------------------
 // set to 1 or 0
-#define Enable_Debug_IRQHandler_PortD_nRF 		        0
-#define Enable_Debug_nRF_Config 				0
-#define Enable_Debug_nRF_SetMode_RX				0
+#if UART_ENABLE == 1
+    //UART being used
+    #define Enable_Debug_IRQHandler_PortD_nRF 		1
+    #define Enable_Debug_nRF_Config 				1
+    #define Enable_Debug_nRF_SetMode_RX				1
+#else
+    #define Enable_Debug_IRQHandler_PortD_nRF 		0
+    #define Enable_Debug_nRF_Config 				0
+    #define Enable_Debug_nRF_SetMode_RX				0
+#endif
 //-------------------------------------------------------------------------------------------------
 //-------------------------------- End of User Editable Section -----------------------------------
 //-------------------------------------------------------------------------------------------------

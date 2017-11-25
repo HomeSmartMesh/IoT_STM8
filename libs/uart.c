@@ -38,7 +38,7 @@ void UARTPrintfLn(char const *ch)
 
 void UARTPrintf4Bits(unsigned char val4bits)
 {
-#if UART_DISABLE != 1
+#if UART_ENABLE == 1
 	char res;
 	if(val4bits < 10)
 	{

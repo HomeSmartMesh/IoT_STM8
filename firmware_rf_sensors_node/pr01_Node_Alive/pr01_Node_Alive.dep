@@ -296,11 +296,11 @@
       <inputs>
         <tool>
           <name>ICCSTM8</name>
-          <file> 10 78 12 28 54 71 61 79 81 76 58</file>
+          <file> 10 78 12 28 54 71 73 61 79 81 76 58</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 28 81 54 61 58 78 12 71 79 76 10</file>
+          <file> 81 54 61 58 78 12 71 79 76 10 28 73</file>
         </tool>
       </inputs>
     </file>
@@ -323,7 +323,7 @@
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 73 81 65 79 60 61 58 68</file>
+          <file> 81 65 68 79 60 61 58 73</file>
         </tool>
       </inputs>
     </file>
@@ -388,11 +388,11 @@
       <inputs>
         <tool>
           <name>ICCSTM8</name>
-          <file> 12 28 10 71 76 61 81 79 50 60</file>
+          <file> 12 28 10 71 73 76 61 81 79 50 60</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 81 71 10 76 79 28 12 50 61 60</file>
+          <file> 81 28 61 71 50 73 10 76 79 12 60</file>
         </tool>
       </inputs>
     </file>
@@ -434,11 +434,11 @@
       <inputs>
         <tool>
           <name>ICCSTM8</name>
-          <file> 81 61 71 54 79 60 58 65 73 68 50</file>
+          <file> 81 61 71 73 54 79 60 58 65 68 50</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 73 60 54 65 71 79 58 50 61 81 68</file>
+          <file> 60 61 54 65 71 79 58 50 73 81 68</file>
         </tool>
       </inputs>
     </file>
@@ -457,11 +457,11 @@
       <inputs>
         <tool>
           <name>ICCSTM8</name>
-          <file> 12 28 10 78 71 79 61 81 76 58 65 73 68 50 67 59</file>
+          <file> 12 28 10 78 71 73 79 61 81 76 58 65 68 50 64 67 59</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 65 79 78 76 67 28 61 10 71 81 58 50 59 68 12 73</file>
+          <file> 73 59 65 79 78 76 64 10 71 81 58 50 67 28 61 12 68</file>
         </tool>
       </inputs>
     </file>
@@ -484,7 +484,7 @@
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 28 78 73 68 12 61</file>
+          <file> 78 73 68 12 28 61</file>
         </tool>
       </inputs>
     </file>
@@ -530,7 +530,7 @@
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 61 50 73 64 65 78 12 68 28</file>
+          <file> 65 50 64 73 78 12 61 68 28</file>
         </tool>
       </inputs>
     </file>

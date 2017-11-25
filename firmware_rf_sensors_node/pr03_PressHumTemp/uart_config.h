@@ -13,7 +13,7 @@
 
 //----------------------------------- UART Disable Enable ---------------------------------------
 
-#define UART_DISABLE 1
+#define UART_ENABLE 0
 
 //----------------------------------- Interruptions ---------------------------------------
 //Flag: UART_USE_RX_INETRRUPT
