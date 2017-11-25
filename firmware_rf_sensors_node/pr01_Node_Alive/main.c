@@ -32,7 +32,7 @@ BYTE NodeId;
 // - CPU and Peripheral clocks stopped, RTC running
 // - wakeup from RTC, or external/Reset
 
-//#define DEBUG_PIO 	PA_ODR_bit.ODR2
+#define DEBUG_PIO 	PA_ODR_bit.ODR2
 
 
 //RF_MAX_DATASIZE must be used as the nRF_Transmit rely on it for a zero copy frame update
@@ -303,58 +303,75 @@ void configure_All_PIO()
 
 void check_minimal_Power()
 {
+	Initialise_Test_GPIO_A2();
+	DEBUG_PIO = 0;
+	delay_100us();
+	DEBUG_PIO = 1;
+	delay_100us();
+	DEBUG_PIO = 0;
+
+	NodeId = *NODE_ID;
+
+	configure_All_PIO();
+	Initialise_STM8L_Clock();		//here enable the RTC clock
+	Initialise_STM8L_RTC_LowPower(SLEEP_PERIOD_SEC);//configure the sleep cycle for a period of 30 sec
+
 	#if UART_ENABLE == 1
 		SYSCFG_RMPCR1_USART1TR_REMAP = 1; // Remap 01: USART1_TX on PA2 and USART1_RX on PA3
 		uart_init();//Tx only
 	#endif
+
 	if(NODE_I2C_SET == 1)
 	{
 		I2C_Init();
+		//for immediate recovery from power on reset, after start transmission
+		nRF_SetMode_PowerDown();
 	}
+
+	#if UART_ENABLE == 1
+		nRF_PrintInfo();
+	#endif
+
+	sleep();						//this is a low power halt sleep 
 	nRF_Config();
     nRF_SelectChannel(RF_CHANNEL);
-	nRF_SetMode_PowerDown();
-        
-	configure_All_PIO();
 	//STM8L(halt) + nRF(PowerDown) + (nothing) => 9 uA
 	__enable_interrupt();
 	while (1)
 	{
 		__halt();
+		DEBUG_PIO = 1;
+		rf_alive_bcast();
 	}
 }
 
 int main( void )
 {
-        Initialise_Test_GPIO_A2();
-        //DEBUG_PIO = 1;
+	//check_minimal_Power();
           
 	NodeId = *NODE_ID;
 
 	configure_All_PIO();
-        Initialise_Test_GPIO_A2();
-        //DEBUG_PIO = 1;
-	
 	Initialise_STM8L_Clock();		//here enable the RTC clock
-
-	//#issue cannot change after first config
-        //DEBUG_PIO = 0;
-	sleep(SLEEP_PERIOD_SEC);						//this is a low power halt sleep 
 	Initialise_STM8L_RTC_LowPower(SLEEP_PERIOD_SEC);//configure the sleep cycle for a period of 30 sec
-	
-	#ifdef CheckMinimalPower
-		check_minimal_Power();
-	#endif
+
+	//for immediate recovery from power on reset, after start transmission
+	nRF_SetMode_PowerDown();
+
+	if(NODE_I2C_SET == 1)
+	{
+		I2C_Init();
+	}
+
+	sleep();						//this is a low power halt sleep 
 
 	#if UART_ENABLE == 1
 		SYSCFG_RMPCR1_USART1TR_REMAP = 1; // Remap 01: USART1_TX on PA2 and USART1_RX on PA3
 		uart_init();//Tx only
 	#endif
-	//Applies the compile time configured parameters from nRF_Configuration.h
+
 	nRF_Config();
     nRF_SelectChannel(RF_CHANNEL);
-
-
 	#if UART_ENABLE == 1
 		nRF_PrintInfo();
 	#endif
@@ -365,13 +382,10 @@ int main( void )
 	//
 	while (1)
 	{
-          //Important to set the halt in the beginning so that battery reset do not retransmit directly
-          //DEBUG_PIO = 0;
+          rf_alive_bcast();//using nRF_Transmit_Wait_Down()
           __halt();
-          //DEBUG_PIO = 1;
 
           //here we wake up from halt
-          rf_alive_bcast();//using nRF_Transmit_Wait_Down()
 
     }
 }

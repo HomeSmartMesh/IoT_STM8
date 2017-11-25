@@ -17,3 +17,32 @@ Address Width : 5 bytes
 Rx Address P0: 0xE7
 Tx Address   : 0xEnRF_Config
 __________________________________________________________
+350 us for 4x 100 us delay
+4.35 ms for 5 ms delay
+
+8x SPI --- delay --- 14th fail
+
+2 SPI - 6 SPI ------- 6 SPI - 7 SPI
+
+nRF_Transmit_Wait_Down()
+    nRF_Transmit()
+        SPI_Write_Register()        (2 SPI)
+        nRF_SetMode_TX()
+            SPI_Read_Register()     2 SPI
+            nRF_SetMode_Standby_I()
+                SPI_Read_Register   2 SPI
+                SPI_Write_Register  2 SPI
+
+                delay 5 ms
+
+            SPI_Read_Register()     2 SPI
+            SPI_Write_Register()    2 SPI
+            SPI_Read_Register()     2 SPI
+        SPI_Write_Buf()             (7 SPI)
+        CE_PULSE
+    nRF_Wait_Transmit()
+    nRF_SetMode_PowerDown()
+
+__________________________________________________________
+STM8L dies 70 us after setting CE pulse
+

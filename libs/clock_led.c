@@ -156,9 +156,9 @@ BYTE Initialise_STM8L_RTC_LowPower(uint16_t times_sec)
     return result;
 }
 
-void sleep(BYTE time)
+void sleep()
 {
-	Initialise_STM8L_RTC_LowPower(time);//Power on sleep to avoid active wait
+	//Initialise_STM8L_RTC_LowPower(time);//Power on sleep to avoid active wait
 	__halt();
 }
 

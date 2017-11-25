@@ -25,6 +25,8 @@
 #include "clock_led.h"
 #include "spi_stm8x.h"
 
+//#define DEBUG_PIO 	PA_ODR_bit.ODR2
+
 //returns the status byte
 BYTE nRF_Transmit(BYTE* payload, BYTE size)
 {
@@ -47,36 +49,40 @@ BYTE nRF_Transmit(BYTE* payload, BYTE size)
 	//status |= bit_TX_DS;
 	//no need to use setbit with status, as two read, and others act on write one only
 	SPI_Write_Register(STATUS,bit_TX_DS);
-	
+
 	if(nRF_Mode != nRF_Mode_Tx)
 	{
 		nRF_SetMode_TX();
 	}
+
 	status = SPI_Write_Buf(WR_TX_PLOAD,payload,size);
-	
+
 	//This pin setting do not support multiple successive transmissions
 	//that fill tx data in multiple buffers
 	//because once first buffer is sent, a check is made on CE
 	//to see if second continues
 	//the bad case is write two buffers and give two pulses while
 	//the first tx is still ongoing, then it stops as CE is low
+
 	CE_Pin_HighEnable();//pulse for more than 10 us
 	delay_10us();
 	delay_10us();
 	CE_Pin_LowDisable();
 
+	//DEBUG_PIO = 0;
+
 	return status;
 }
-
-//#define DEBUG_PIO 	PA_ODR_bit.ODR2
 
 BYTE nRF_Transmit_Wait_Down(BYTE* payload, BYTE size)
 {
 	BYTE status;
 	status = nRF_Transmit(payload,size);
-	//DEBUG_PIO = 0;
+
+	//from here would die within 60 us and restart in main()
+
 	nRF_Wait_Transmit();
-	//DEBUG_PIO = 1;
+
 	nRF_SetMode_PowerDown();
 
 	return status;

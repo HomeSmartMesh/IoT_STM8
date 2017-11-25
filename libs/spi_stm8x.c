@@ -107,14 +107,16 @@ void CSN_Pin_HighDisable()
 //Initialise the Configuration registers 1 and 2. Also resets the polynomial to the default
 void SPI_Init_Peripheral()
 {
-        const BYTE SPI_CR1_BR_fDiv256 = 0x07;
+        //const BYTE SPI_CR1_BR_fDiv256 = 0x07;
+        const BYTE SPI_CR1_BR_fDiv2 = 0x00;
 
         //Enable SPI1 Peripheral Clock
         CLK_PCKENR1_PCKEN14 = 1;
 	
 	SPI1_CR1 = 0x00;//default reset value
 	//SPI_CR1_LSBFIRST = 0;
-	SPI1_CR1_BR = SPI_CR1_BR_fDiv256;
+	SPI1_CR1_BR = SPI_CR1_BR_fDiv2;
+	//SPI1_CR1_BR = SPI_CR1_BR_fDiv256;
 	//SPI_CR1_CPOL = 0; Low when Idle
 	//SPI_CR1_CPHA = 0; 1st edge
 	
