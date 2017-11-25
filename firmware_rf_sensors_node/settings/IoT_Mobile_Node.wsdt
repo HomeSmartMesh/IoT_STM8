@@ -5,7 +5,7 @@
     
     
     
-  <CurrentConfigs><Project>pr01_Node_Alive/Debug</Project><Project>pr02_AmbientLight/Debug</Project><Project>pr03_PressHumTemp/Debug</Project><Project>pr04_LightBroadcast/Debug</Project></CurrentConfigs><CurrentProj>pr01_Node_Alive</CurrentProj><OverviewSelected>1</OverviewSelected></ConfigDictionary>
+  <CurrentConfigs><Project>pr02_AmbientLight/Debug</Project><Project>pr01_Node_Alive/Debug</Project><Project>pr03_PressHumTemp/Debug</Project><Project>pr04_LightBroadcast/Debug</Project></CurrentConfigs><CurrentProj>pr01_Node_Alive</CurrentProj><OverviewSelected>1</OverviewSelected></ConfigDictionary>
   <Desktop>
     <Static>
       <Workspace>
@@ -14,7 +14,7 @@
           
           
           
-        <Column0>292</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+        <Column0>340</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
       </Workspace>
       <Build>
         
@@ -55,14 +55,14 @@
       
       
       
-    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\pr01_Node_Alive\main.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>283</YPos2><SelStart2>7446</SelStart2><SelEnd2>7446</SelEnd2></Tab><ActiveTab>0</ActiveTab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\pr01_Node_Alive\main.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>302</YPos2><SelStart2>7884</SelStart2><SelEnd2>7884</SelEnd2></Tab><ActiveTab>0</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\libs\clock_led.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>79</YPos2><SelStart2>2488</SelStart2><SelEnd2>2488</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\libs\nRF_Tx.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>40</YPos2><SelStart2>0</SelStart2><SelEnd2>0</SelEnd2></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
     <Positions>
       
       
       
       
       
-    <Top><Row0><Sizes><Toolbar-05318388><key>iaridepm.enu1</key></Toolbar-05318388></Sizes></Row0><Row1><Sizes/></Row1><Row2><Sizes/></Row2></Top><Left><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>1124</Bottom><Right>366</Right><x>-2</x><y>-2</y><xscreen>654</xscreen><yscreen>182</yscreen><sizeHorzCX>475291</sizeHorzCX><sizeHorzCY>131124</sizeHorzCY><sizeVertCX>267442</sizeVertCX><sizeVertCY>811239</sizeVertCY></Rect></Wnd0></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>219</Bottom><Right>1378</Right><x>-2</x><y>-2</y><xscreen>1380</xscreen><yscreen>221</yscreen><sizeHorzCX>1002907</sizeHorzCX><sizeHorzCY>159222</sizeHorzCY><sizeVertCX>475291</sizeVertCX><sizeVertCY>131124</sizeVertCY></Rect></Wnd1></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+    <Top><Row0><Sizes><Toolbar-079A7CB8><key>iaridepm.enu1</key></Toolbar-079A7CB8></Sizes></Row0><Row1><Sizes/></Row1><Row2><Sizes/></Row2></Top><Left><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>961</Bottom><Right>414</Right><x>-2</x><y>-2</y><xscreen>740</xscreen><yscreen>157</yscreen><sizeHorzCX>475273</sizeHorzCX><sizeHorzCY>131491</sizeHorzCY><sizeVertCX>267180</sizeVertCX><sizeVertCY>806533</sizeVertCY></Rect></Wnd0></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>188</Bottom><Right>1559</Right><x>-2</x><y>-2</y><xscreen>1561</xscreen><yscreen>190</yscreen><sizeHorzCX>1002569</sizeHorzCX><sizeHorzCY>159129</sizeHorzCY><sizeVertCX>475273</sizeVertCX><sizeVertCY>131491</sizeVertCY></Rect></Wnd1></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
   </Desktop>
 </Workspace>
 

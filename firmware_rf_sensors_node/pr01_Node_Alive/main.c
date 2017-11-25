@@ -30,6 +30,8 @@ BYTE NodeId;
 // - CPU and Peripheral clocks stopped, RTC running
 // - wakeup from RTC, or external/Reset
 
+#define DEBUG_PIO 	PA_ODR_bit.ODR2
+
 
 //RF_MAX_DATASIZE must be used as the nRF_Transmit rely on it for a zero copy frame update
 BYTE tx_data[RF_MAX_DATASIZE];
@@ -60,7 +62,7 @@ void rf_alive_bcast()
     tx_data[rfi_src] = NodeId;
     crc_set(tx_data);
    
-	nRF_Transmit_Wait_Down(tx_data,rfi_broadcast_header_size+crc_size);
+    nRF_Transmit_Wait_Down(tx_data,rfi_broadcast_header_size+crc_size);
 }
 
 void rf_magnet_bcast(unsigned char state)
@@ -319,13 +321,19 @@ void check_minimal_Power()
 
 int main( void )
 {
+        Initialise_Test_GPIO_A2();
+        DEBUG_PIO = 1;
+          
 	NodeId = *NODE_ID;
 
 	configure_All_PIO();
+        Initialise_Test_GPIO_A2();
+        DEBUG_PIO = 1;
 	
 	Initialise_STM8L_Clock();		//here enable the RTC clock
 
 	//#issue cannot change after first config
+        DEBUG_PIO = 0;
 	sleep(SLEEP_PERIOD_SEC);						//this is a low power halt sleep 
 	Initialise_STM8L_RTC_LowPower(SLEEP_PERIOD_SEC);//configure the sleep cycle for a period of 30 sec
 	
@@ -349,11 +357,13 @@ int main( void )
 	//
 	while (1)
 	{
-		//Important to set the halt in the beginning so that battery reset do not retransmit directly
-		__halt();
+          //Important to set the halt in the beginning so that battery reset do not retransmit directly
+          DEBUG_PIO = 0;
+          __halt();
+          DEBUG_PIO = 1;
 
-		//here we wake up from halt
-		rf_alive_bcast();//using nRF_Transmit_Wait_Down()
+          //here we wake up from halt
+          rf_alive_bcast();//using nRF_Transmit_Wait_Down()
 
     }
 }

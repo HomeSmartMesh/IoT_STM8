@@ -1,0 +1,10 @@
+* While loop for status wait is endless
+
+* trace with printf values of status register
+* check if debug printf is enabled or disabled
+* wait 100 ms on startup should not be there
+* flush and reas status before write has changed
+
+__________________________________________________________
+* TODO check printf log
+

@@ -11,6 +11,8 @@
  * $Revision:
  *
  */
+#include <iostm8l151f3.h>
+#include <intrinsics.h>
 
 //----------------------- config includes -----------------------
 #include "nRF_Configuration.h"
@@ -39,11 +41,12 @@ BYTE nRF_Transmit(BYTE* payload, BYTE size)
 	//this will intrrupt any previously on going or blocked Tx (lost link)
 	//This Flush is dubtfull, not necessary
 	//and breaking quick successive transmissions
-	status = SPI_Command(FLUSH_TX);
+	//status = SPI_Command(FLUSH_TX);
 
 	//Assert Data Sent before new transmission to poll TX status
-	status |= bit_TX_DS;
-	SPI_Write_Register(STATUS,status);
+	//status |= bit_TX_DS;
+	//no need to use setbit with status, as two read, and others act on write one only
+	SPI_Write_Register(STATUS,bit_TX_DS);
 	
 	if(nRF_Mode != nRF_Mode_Tx)
 	{
@@ -65,11 +68,15 @@ BYTE nRF_Transmit(BYTE* payload, BYTE size)
 	return status;
 }
 
+#define DEBUG_PIO 	PA_ODR_bit.ODR2
+
 BYTE nRF_Transmit_Wait_Down(BYTE* payload, BYTE size)
 {
 	BYTE status;
 	status = nRF_Transmit(payload,size);
+	DEBUG_PIO = 0;
 	nRF_Wait_Transmit();
+	DEBUG_PIO = 1;
 	nRF_SetMode_PowerDown();
 
 	return status;
@@ -94,8 +101,8 @@ BYTE nRF_Wait_Transmit()
 	{
 		status = SPI_Read_Register(STATUS);
 		cycles++;
-	}while(((status &bit_TX_DS) == 0)&(cycles!=255));
+		delay_10us();
+	}while(((status &bit_TX_DS) == 0)&(cycles<10));
 	
 	return cycles;
 }
-

@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "xlocale": "c"
+        "xlocale": "c",
+        "nrf_tx.h": "c"
     }
 }
