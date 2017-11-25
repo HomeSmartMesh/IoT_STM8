@@ -6,152 +6,129 @@
   <configuration>
     <name>Debug</name>
     <outputs>
+      <file>$PROJ_DIR$\..\..\libs\bme280.h</file>
+      <file>$PROJ_DIR$\..\..\libs\clock_led.c</file>
+      <file>$PROJ_DIR$\..\..\libs\clock_led.h</file>
+      <file>$PROJ_DIR$\..\..\libs\cmdutils.h</file>
+      <file>$PROJ_DIR$\..\..\libs\commonTypes.h</file>
+      <file>$PROJ_DIR$\..\..\libs\i2c_stm8x.c</file>
+      <file>$PROJ_DIR$\..\..\libs\i2c_stm8x.h</file>
+      <file>$PROJ_DIR$\..\..\libs\max44009.c</file>
+      <file>$PROJ_DIR$\..\..\libs\max44009.h</file>
+      <file>$PROJ_DIR$\..\..\libs\nRF.c</file>
+      <file>$PROJ_DIR$\..\..\libs\nRF.h</file>
+      <file>$PROJ_DIR$\..\..\libs\nRF_IRQ_stm8x.c</file>
+      <file>$PROJ_DIR$\..\..\libs\nRF_IRQ_stm8x.h</file>
       <file>$PROJ_DIR$\..\..\libs\bme280.c</file>
       <file>$PROJ_DIR$\..\..\libs\cmdutils.c</file>
-      <file>$PROJ_DIR$\..\..\libs\i2c_stm8x.c</file>
-      <file>$PROJ_DIR$\..\..\libs\max44009.h</file>
-      <file>$PROJ_DIR$\..\..\libs\cmdutils.h</file>
-      <file>$PROJ_DIR$\..\..\libs\nRF.c</file>
-      <file>$PROJ_DIR$\..\..\libs\nRF_IRQ_stm8x.c</file>
-      <file>$PROJ_DIR$\..\..\libs\bme280.h</file>
-      <file>$PROJ_DIR$\..\..\libs\clock_led.h</file>
-      <file>$PROJ_DIR$\..\..\libs\clock_led.c</file>
-      <file>$PROJ_DIR$\..\..\libs\commonTypes.h</file>
-      <file>$PROJ_DIR$\..\..\libs\i2c_stm8x.h</file>
-      <file>$PROJ_DIR$\..\..\libs\nRF_IRQ_stm8x.h</file>
       <file>$PROJ_DIR$\..\..\libs\nRF_RegText.c</file>
       <file>$PROJ_DIR$\..\..\libs\nRF_RegText.h</file>
-      <file>$PROJ_DIR$\..\..\libs\nRF.h</file>
-      <file>$PROJ_DIR$\..\..\libs\max44009.c</file>
+      <file>$PROJ_DIR$\..\..\..\libs\nRF.c</file>
+      <file>$PROJ_DIR$\..\..\..\libs\nRF_SPI.h</file>
+      <file>$PROJ_DIR$\..\..\..\libs\nRF_Tx.c</file>
+      <file>$PROJ_DIR$\Debug\Obj\i2c_stm8x.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\nRF_RegText.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\uart_stm8x.o</file>
+      <file>$TOOLKIT_DIR$\inc\c\intrinsics.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\uart.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\clock_led.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\cmdutils.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\uart.o</file>
+      <file>$TOOLKIT_DIR$\lib\dlstm8smn.a</file>
+      <file>$PROJ_DIR$\BMP280_API.h</file>
+      <file>$PROJ_DIR$\..\..\libs\nRF_Tx.h</file>
+      <file>$PROJ_DIR$\..\..\libs\nRF_SPI.c</file>
+      <file>$PROJ_DIR$\..\..\libs\nRF_Tx.c</file>
+      <file>$PROJ_DIR$\..\..\libs\nRF_SPI.h</file>
+      <file>$PROJ_DIR$\..\..\libs\rf_protocol.c</file>
+      <file>$PROJ_DIR$\..\..\..\libs\max44009.c</file>
+      <file>$PROJ_DIR$\..\..\..\libs\uart.c</file>
       <file>$PROJ_DIR$\Debug\Obj\nRF_Tx.o</file>
+      <file>$PROJ_DIR$\..\..\..\libs\commonTypes.h</file>
+      <file>$PROJ_DIR$\..\..\libs\spi_stm8x.c</file>
+      <file>$PROJ_DIR$\..\..\..\libs\spi_stm8x.c</file>
       <file>$PROJ_DIR$\BMP280_API.c</file>
-      <file>$PROJ_DIR$\Debug\Obj\BMP280_API.o</file>
-      <file>$PROJ_DIR$\..\..\..\libs\cmdutils.c</file>
       <file>$PROJ_DIR$\Debug\Obj\uart_stm8x.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\spi_stm8x.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\nRF.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\bme280.o</file>
-      <file>$PROJ_DIR$\..\..\..\libs\nRF_IRQ_stm8x.c</file>
+      <file>$PROJ_DIR$\..\..\libs\spi_stm8x.h</file>
       <file>$TOOLKIT_DIR$\inc\io_macros.h</file>
       <file>$PROJ_DIR$\..\..\..\libs\rf_protocol.c</file>
       <file>$PROJ_DIR$\Debug\Obj\main.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\nRF_RegText.pbi</file>
-      <file>$PROJ_DIR$\..\..\libs\nRF_SPI.c</file>
-      <file>$PROJ_DIR$\..\..\libs\nRF_SPI.h</file>
-      <file>$PROJ_DIR$\..\..\libs\nRF_Tx.c</file>
-      <file>$PROJ_DIR$\..\..\libs\nRF_Tx.h</file>
-      <file>$PROJ_DIR$\nRF_Configuration.h</file>
-      <file>$TOOLKIT_DIR$\lib\dbgstm8smd.a</file>
-      <file>$PROJ_DIR$\Debug\Obj\max44009.pbi</file>
-      <file>$PROJ_DIR$\..\..\..\libs\clock_led.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\rf_protocol.pbi</file>
-      <file>$PROJ_DIR$\uart_config.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\nRF_IRQ_stm8x.pbi</file>
-      <file>$PROJ_DIR$\..\..\libs\rf_protocol.c</file>
-      <file>$PROJ_DIR$\Debug\Obj\main.o</file>
-      <file>$PROJ_DIR$\..\..\libs\spi_stm8x.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\bme280.pbi</file>
-      <file>$PROJ_DIR$\Debug\Exe\pr03_PressHumTemp.out</file>
-      <file>$PROJ_DIR$\Debug\Obj\max44009.o</file>
-      <file>$PROJ_DIR$\Debug\Obj\nRF_IRQ_stm8x.o</file>
-      <file>$PROJ_DIR$\..\..\libs\uart.h</file>
-      <file>$PROJ_DIR$\main.c</file>
-      <file>$PROJ_DIR$\Debug\Obj\uart.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\clock_led.o</file>
-      <file>$PROJ_DIR$\Debug\Obj\nRF_RegText.o</file>
-      <file>$PROJ_DIR$\..\..\libs\uart.c</file>
-      <file>$PROJ_DIR$\..\..\libs\spi_stm8x.c</file>
-      <file>$PROJ_DIR$\..\..\..\libs\nRF_SPI.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\i2c_stm8x.o</file>
-      <file>$PROJ_DIR$\..\..\libs\rf_protocol.h</file>
-      <file>$PROJ_DIR$\..\..\..\libs\bme280.c</file>
-      <file>$PROJ_DIR$\Debug\Obj\nRF_SPI.pbi</file>
-      <file>$PROJ_DIR$\deviceType.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\clock_led.pbi</file>
-      <file>$PROJ_DIR$\BMP280_API.h</file>
-      <file>$PROJ_DIR$\..\..\libs\uart_stm8x.c</file>
-      <file>$PROJ_DIR$\Debug\Obj\uart.o</file>
       <file>$PROJ_DIR$\..\..\libs\uart_stm8x.h</file>
-      <file>$PROJ_DIR$\..\..\..\libs\clock_led.c</file>
-      <file>$PROJ_DIR$\..\..\..\libs\spi_stm8x.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\uart_stm8x.o</file>
-      <file>$TOOLKIT_DIR$\inc\c\intrinsics.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\i2c_stm8x.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\nRF_SPI.o</file>
-      <file>$PROJ_DIR$\Debug\Obj\rf_protocol.o</file>
-      <file>$TOOLKIT_DIR$\lib\dlstm8smn.a</file>
-      <file>$TOOLKIT_DIR$\inc\iostm8l151f3.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\spi_stm8x.o</file>
-      <file>$PROJ_DIR$\..\..\..\libs\i2c_stm8x.c</file>
-      <file>$PROJ_DIR$\..\..\..\libs\nRF_Tx.c</file>
-      <file>$PROJ_DIR$\Debug\Obj\cmdutils.pbi</file>
-      <file>$PROJ_DIR$\..\..\..\libs\nRF.c</file>
-      <file>$PROJ_DIR$\..\..\..\libs\uart_stm8x.c</file>
-      <file>$PROJ_DIR$\Debug\Obj\nRF_Tx.pbi</file>
+      <file>$PROJ_DIR$\..\..\..\libs\nRF_RegText.c</file>
+      <file>$PROJ_DIR$\Debug\Obj\cmdutils.o</file>
+      <file>$PROJ_DIR$\main.c</file>
       <file>$PROJ_DIR$\Debug\Obj\nRF.o</file>
+      <file>$PROJ_DIR$\..\..\libs\uart.h</file>
+      <file>$PROJ_DIR$\uart_config.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\nRF_Tx.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\BMP280_API.o</file>
+      <file>$PROJ_DIR$\..\..\libs\eeprom.h</file>
+      <file>$PROJ_DIR$\..\..\libs\uart.c</file>
+      <file>$PROJ_DIR$\..\..\libs\uart_stm8x.c</file>
+      <file>$PROJ_DIR$\deviceType.h</file>
+      <file>$PROJ_DIR$\nRF_Configuration.h</file>
+      <file>$TOOLKIT_DIR$\config\lnkstm8l151f3.icf</file>
       <file>$PROJ_DIR$\..\..\..\libs\nRF_SPI.c</file>
       <file>$PROJ_DIR$\Debug\Obj\BMP280_API.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\cmdutils.o</file>
-      <file>$PROJ_DIR$\..\..\..\libs\max44009.c</file>
-      <file>$PROJ_DIR$\..\..\..\libs\commonTypes.h</file>
-      <file>$PROJ_DIR$\..\..\..\libs\spi_stm8x.c</file>
-      <file>$TOOLKIT_DIR$\config\lnkstm8l151f3.icf</file>
-      <file>$PROJ_DIR$\..\..\..\libs\uart.c</file>
-      <file>$PROJ_DIR$\..\..\libs\eeprom.h</file>
-      <file>$PROJ_DIR$\..\..\..\libs\nRF_RegText.c</file>
+      <file>$PROJ_DIR$\..\..\libs\rf_protocol.h</file>
+      <file>$PROJ_DIR$\..\..\..\libs\uart_stm8x.c</file>
+      <file>$TOOLKIT_DIR$\inc\iostm8l151f3.h</file>
+      <file>$PROJ_DIR$\..\..\..\libs\clock_led.c</file>
+      <file>$PROJ_DIR$\Debug\Obj\spi_stm8x.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\clock_led.o</file>
+      <file>$PROJ_DIR$\..\..\..\libs\nRF_IRQ_stm8x.c</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.o</file>
+      <file>$PROJ_DIR$\..\..\..\libs\i2c_stm8x.c</file>
+      <file>$PROJ_DIR$\..\..\..\libs\cmdutils.c</file>
+      <file>$PROJ_DIR$\Debug\Obj\rf_protocol.pbi</file>
+      <file>$TOOLKIT_DIR$\lib\dbgstm8smd.a</file>
+      <file>$PROJ_DIR$\..\..\..\libs\clock_led.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\bme280.pbi</file>
+      <file>$PROJ_DIR$\..\..\..\libs\spi_stm8x.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\nRF_RegText.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\nRF_IRQ_stm8x.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\nRF_IRQ_stm8x.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\nRF.pbi</file>
+      <file>$PROJ_DIR$\..\..\..\libs\bme280.c</file>
+      <file>$PROJ_DIR$\Debug\Obj\nRF_SPI.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\spi_stm8x.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\max44009.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\rf_protocol.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\bme280.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\max44009.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\i2c_stm8x.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\nRF_SPI.o</file>
+      <file>$PROJ_DIR$\Debug\Exe\pr03_PressHumTemp.out</file>
     </outputs>
     <file>
       <name>[ROOT_NODE]</name>
       <outputs>
         <tool>
           <name>ILINK</name>
-          <file> 45</file>
+          <file> 92</file>
         </tool>
       </outputs>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\libs\bme280.c</name>
+      <name>$PROJ_DIR$\..\..\libs\clock_led.c</name>
       <outputs>
         <tool>
           <name>ICCSTM8</name>
-          <file> 24</file>
+          <file> 69</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 44</file>
+          <file> 25</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCSTM8</name>
-          <file> 60 11 10 48 39 65 8 57</file>
+          <file> 2 4 59 66 44 23</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 57 8 10 11 48 65 60 39</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\..\libs\cmdutils.c</name>
-      <outputs>
-        <tool>
-          <name>ICCSTM8</name>
-          <file> 85</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 78</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCSTM8</name>
-          <file> 4 10 91 60 48 39 65</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 48 91 10 60 39 4 65</file>
+          <file> 23 44 59 66 4 2</file>
         </tool>
       </inputs>
     </file>
@@ -160,113 +137,21 @@
       <outputs>
         <tool>
           <name>ICCSTM8</name>
-          <file> 56</file>
+          <file> 90</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 70</file>
+          <file> 20</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCSTM8</name>
-          <file> 11 10 48 39 65 8 60 74 26</file>
+          <file> 6 4 52 53 47 2 59 66 44</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 48 8 10 11 39 60 74 65 26</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\..\libs\nRF.c</name>
-      <outputs>
-        <tool>
-          <name>ICCSTM8</name>
-          <file> 82</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 23</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCSTM8</name>
-          <file> 15 10 34 12 31 43 14 48 39 65 8</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 43 10 12 48 39 34 31 14 8 15 65</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\..\libs\nRF_IRQ_stm8x.c</name>
-      <outputs>
-        <tool>
-          <name>ICCSTM8</name>
-          <file> 47</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 40</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCSTM8</name>
-          <file> 69 60 74 26 12 34 10 31 15 33 14</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 26 15 12 10 14 60 74 34 31 33 69</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\..\libs\clock_led.c</name>
-      <outputs>
-        <tool>
-          <name>ICCSTM8</name>
-          <file> 51</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 61</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCSTM8</name>
-          <file> 8 10 60 74 26 69</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 69 26 60 74 10 8</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\..\libs\nRF_RegText.c</name>
-      <outputs>
-        <tool>
-          <name>ICCSTM8</name>
-          <file> 52</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 29</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCSTM8</name>
-          <file> 14 10 31 48 39 65 43 15</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 15 48 39 31 43 10 14 65</file>
+          <file> 52 2 4 6 53 59 66 47 44</file>
         </tool>
       </inputs>
     </file>
@@ -275,30 +160,163 @@
       <outputs>
         <tool>
           <name>ICCSTM8</name>
-          <file> 46</file>
+          <file> 89</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 36</file>
+          <file> 86</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCSTM8</name>
-          <file> 11 10 48 39 65 8 57</file>
+          <file> 6 4 52 53 47 2 64</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 39 57 10 8 48 65 11</file>
+          <file> 53 64 4 2 52 47 6</file>
         </tool>
       </inputs>
     </file>
     <file>
-      <name>$PROJ_DIR$\BMP280_API.c</name>
+      <name>$PROJ_DIR$\..\..\libs\nRF.c</name>
       <outputs>
         <tool>
           <name>ICCSTM8</name>
-          <file> 19</file>
+          <file> 51</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 82</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 10 4 60 12 33 43 16 52 53 47 2</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 43 4 12 52 53 60 33 16 2 10 47</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\libs\nRF_IRQ_stm8x.c</name>
+      <outputs>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 80</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 81</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 23 59 66 44 12 60 4 33 10 30 16</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 44 10 12 4 16 59 66 60 33 30 23</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\libs\bme280.c</name>
+      <outputs>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 88</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 77</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 59 6 4 52 53 47 2 64</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 64 2 4 6 52 47 59 53</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\libs\cmdutils.c</name>
+      <outputs>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 49</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 26</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 3 4 56 59 52 53 47</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 52 56 4 59 53 3 47</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\libs\nRF_RegText.c</name>
+      <outputs>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 21</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 79</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 16 4 33 52 53 47 43 10</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 10 52 53 33 43 4 16 47</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\libs\nRF.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 82</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\libs\nRF_Tx.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 54</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\libs\nRF_SPI.c</name>
+      <outputs>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 91</file>
         </tool>
         <tool>
           <name>BICOMP</name>
@@ -308,61 +326,11 @@
       <inputs>
         <tool>
           <name>ICCSTM8</name>
-          <file> 62 87</file>
+          <file> 33 4 43 2</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 62 87</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\..\..\libs\cmdutils.c</name>
-      <outputs>
-        <tool>
-          <name>BICOMP</name>
-          <file> 78</file>
-        </tool>
-      </outputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\..\..\libs\nRF_IRQ_stm8x.c</name>
-      <outputs>
-        <tool>
-          <name>BICOMP</name>
-          <file> 40</file>
-        </tool>
-      </outputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\..\..\libs\rf_protocol.c</name>
-      <outputs>
-        <tool>
-          <name>BICOMP</name>
-          <file> 38</file>
-        </tool>
-      </outputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\..\libs\nRF_SPI.c</name>
-      <outputs>
-        <tool>
-          <name>ICCSTM8</name>
-          <file> 71</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 59</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCSTM8</name>
-          <file> 31 10 43 8</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 8 43 10 31</file>
+          <file> 2 43 4 33</file>
         </tool>
       </inputs>
     </file>
@@ -371,21 +339,21 @@
       <outputs>
         <tool>
           <name>ICCSTM8</name>
-          <file> 17</file>
+          <file> 37</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 81</file>
+          <file> 54</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCSTM8</name>
-          <file> 34 33 10 15 31 8 43</file>
+          <file> 60 30 4 10 33 2 43</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 10 15 33 31 34 8 43</file>
+          <file> 4 10 30 33 60 2 43</file>
         </tool>
       </inputs>
     </file>
@@ -394,191 +362,21 @@
       <outputs>
         <tool>
           <name>ICCSTM8</name>
-          <file> 72</file>
+          <file> 87</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 38</file>
+          <file> 74</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICCSTM8</name>
-          <file> 57 10 48 39 65</file>
+          <file> 64 4 52 53 47</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 57 10 48 39 65</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\Debug\Exe\pr03_PressHumTemp.out</name>
-      <inputs>
-        <tool>
-          <name>ILINK</name>
-          <file> 89 24 51 85 56 42 46 82 47 52 71 17 72 75 64 68 73 35</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\main.c</name>
-      <outputs>
-        <tool>
-          <name>ICCSTM8</name>
-          <file> 42</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 28</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCSTM8</name>
-          <file> 74 26 69 60 34 15 10 33 48 39 65 8 11 7 3 57 4</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 8 15 3 60 10 57 48 69 34 33 11 7 4 65 74 26 39</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\..\libs\uart.c</name>
-      <outputs>
-        <tool>
-          <name>ICCSTM8</name>
-          <file> 64</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 50</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCSTM8</name>
-          <file> 60 39 48 10 65 8</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 60 39 48 8 10 65</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\..\libs\spi_stm8x.c</name>
-      <outputs>
-        <tool>
-          <name>ICCSTM8</name>
-          <file> 75</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 22</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCSTM8</name>
-          <file> 43 10 60 74 26</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 26 60 74 10 43</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\..\..\libs\bme280.c</name>
-      <outputs>
-        <tool>
-          <name>BICOMP</name>
-          <file> 44</file>
-        </tool>
-      </outputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\..\libs\uart_stm8x.c</name>
-      <outputs>
-        <tool>
-          <name>ICCSTM8</name>
-          <file> 68</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 21</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICCSTM8</name>
-          <file> 10 39 60 65 74 26</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 26 60 39 65 74 10</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\..\..\libs\clock_led.c</name>
-      <outputs>
-        <tool>
-          <name>BICOMP</name>
-          <file> 61</file>
-        </tool>
-      </outputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\..\..\libs\i2c_stm8x.c</name>
-      <outputs>
-        <tool>
-          <name>BICOMP</name>
-          <file> 70</file>
-        </tool>
-      </outputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\..\..\libs\nRF_Tx.c</name>
-      <outputs>
-        <tool>
-          <name>BICOMP</name>
-          <file> 81</file>
-        </tool>
-      </outputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\..\..\libs\nRF.c</name>
-      <outputs>
-        <tool>
-          <name>BICOMP</name>
-          <file> 23</file>
-        </tool>
-      </outputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\..\..\libs\uart_stm8x.c</name>
-      <outputs>
-        <tool>
-          <name>BICOMP</name>
-          <file> 21</file>
-        </tool>
-      </outputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\..\..\libs\nRF_SPI.c</name>
-      <outputs>
-        <tool>
-          <name>BICOMP</name>
-          <file> 59</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>BICOMP</name>
-          <file> 37 67 87 55</file>
+          <file> 64 4 52 53 47</file>
         </tool>
       </inputs>
     </file>
@@ -587,16 +385,7 @@
       <outputs>
         <tool>
           <name>BICOMP</name>
-          <file> 36</file>
-        </tool>
-      </outputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\..\..\libs\spi_stm8x.c</name>
-      <outputs>
-        <tool>
-          <name>BICOMP</name>
-          <file> 22</file>
+          <file> 86</file>
         </tool>
       </outputs>
     </file>
@@ -605,7 +394,71 @@
       <outputs>
         <tool>
           <name>BICOMP</name>
-          <file> 50</file>
+          <file> 24</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\libs\spi_stm8x.c</name>
+      <outputs>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 68</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 85</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 43 4 59 66 44</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 44 59 66 4 43</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\libs\spi_stm8x.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 85</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\BMP280_API.c</name>
+      <outputs>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 55</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 63</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 29 38</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 29 38</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\libs\rf_protocol.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 74</file>
         </tool>
       </outputs>
     </file>
@@ -614,9 +467,156 @@
       <outputs>
         <tool>
           <name>BICOMP</name>
-          <file> 29</file>
+          <file> 79</file>
         </tool>
       </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.c</name>
+      <outputs>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 71</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 46</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 66 44 23 59 60 10 4 30 52 53 47 2 6 0 8 64 3</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 2 10 8 59 4 64 52 23 60 30 6 0 3 47 66 44 53</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\libs\uart.c</name>
+      <outputs>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 27</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 24</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 59 53 52 4 47 2</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 59 53 52 2 4 47</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\libs\uart_stm8x.c</name>
+      <outputs>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 22</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 42</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 4 53 59 47 66 44</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 44 59 53 47 66 4</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\libs\nRF_SPI.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 84</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 76 78 38 18</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\libs\uart_stm8x.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 42</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\libs\clock_led.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 25</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\libs\nRF_IRQ_stm8x.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 81</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\libs\i2c_stm8x.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 20</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\libs\cmdutils.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 26</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\libs\bme280.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 77</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Debug\Exe\pr03_PressHumTemp.out</name>
+      <inputs>
+        <tool>
+          <name>ILINK</name>
+          <file> 61 88 69 49 90 71 89 51 80 21 91 37 87 68 27 22 28 75</file>
+        </tool>
+      </inputs>
     </file>
   </configuration>
   <configuration>

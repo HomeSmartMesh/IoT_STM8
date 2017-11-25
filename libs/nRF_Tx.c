@@ -68,15 +68,15 @@ BYTE nRF_Transmit(BYTE* payload, BYTE size)
 	return status;
 }
 
-#define DEBUG_PIO 	PA_ODR_bit.ODR2
+//#define DEBUG_PIO 	PA_ODR_bit.ODR2
 
 BYTE nRF_Transmit_Wait_Down(BYTE* payload, BYTE size)
 {
 	BYTE status;
 	status = nRF_Transmit(payload,size);
-	DEBUG_PIO = 0;
+	//DEBUG_PIO = 0;
 	nRF_Wait_Transmit();
-	DEBUG_PIO = 1;
+	//DEBUG_PIO = 1;
 	nRF_SetMode_PowerDown();
 
 	return status;

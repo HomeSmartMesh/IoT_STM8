@@ -8,3 +8,16 @@
 __________________________________________________________
 * TODO check printf log
 
+__________________________________________________________
+
+nRF_Config
+
+Config updated with : 0x72 ; reread 0x72 ; STATUS: 0x0E : No Data Ready i; No Data Sent i; No Max Ret i; Rx Fifo Empty ; Available TX Fifo Locations;
+STATUS: 0x0E : No Data Ready i; No Data Sent i; No Max Ret i; Rx Fifo Empty ; Available TX Fifo Locations;
+CONFIG: 0x70 : RX IRQ Masked; TX IRQ Masked; Max RT IRQ Masked; CRC Disabled; CRC 1 Bytes; Power Down; P TX Mode; 
+ChipEnable Low
+Channel 10 selected : 2410 MHz
+Address Width : 5 bytes
+Rx Address P0: 0xE7
+Tx Address   : 0xE7
+
