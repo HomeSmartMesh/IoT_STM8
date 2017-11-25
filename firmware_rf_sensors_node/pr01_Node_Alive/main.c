@@ -18,10 +18,10 @@
 #include "i2c_stm8x.h"
 
 #define EEPROM_Offset 0x1000
-#define NODE_HW_CONFIG	EEPROM_Offset+0x10
-#define NODE_FUNCTIONAL_CONFIG	EEPROM_Offset+0x20
+#define NODE_ID       (char *) 	EEPROM_Offset;
+#define NODE_FUNCTIONAL_CONFIG	EEPROM_Offset+0x10
+#define NODE_HW_CONFIG			EEPROM_Offset+0x20
 
-#define NODE_ID       (char *) EEPROM_Offset;
 BYTE NodeId;
 
 //to format the tx data
@@ -42,19 +42,29 @@ BYTE tx_data[RF_MAX_DATASIZE];
 //Magnet B0 is Top
 //Magnet D0 is side
 //------------------------------ Node Config ---------------------------------
+//issue with floating power consumption, force to I2C init
+#define NODE_I2C_SET                    1
+#if UART_ENABLE == 1
+	#define STARTUP_SEND_CALIB_INFO			1
+#else
+	#define STARTUP_SEND_CALIB_INFO			0
+#endif
+
+
 //0x1010
-#define NODE_MAGNET_B_SET               *(char*)(NODE_HW_CONFIG+0x00)
-#define NODE_MAGNET_B_INTERRUPT			*(char*)(NODE_HW_CONFIG+0x01)
-#define NODE_MAGNET_D_SET               *(char*)(NODE_HW_CONFIG+0x02)
-#define NODE_MAGNET_D_INTERRUPT         *(char*)(NODE_HW_CONFIG+0x03)
-#define NODE_I2C_SET                    *(char*)(NODE_HW_CONFIG+0x04)
-#define NODE_MAX44009_SET               *(char*)(NODE_HW_CONFIG+0x05)
+#define RF_CHANNEL						*(char*)(NODE_FUNCTIONAL_CONFIG+0x00)
+#define SLEEP_PERIOD_SEC				*(char*)(NODE_FUNCTIONAL_CONFIG+0x01)
 
 //0x1020
-#define SLEEP_PERIOD_SEC				*(char*)(NODE_FUNCTIONAL_CONFIG+0x00)
-#define STARTUP_SEND_CALIB_INFO			*(char*)(NODE_FUNCTIONAL_CONFIG+0x01)
-//#define USE_UART						*(char*)(NODE_FUNCTIONAL_CONFIG+0x02)
-#define RF_CHANNEL						*(char*)(NODE_FUNCTIONAL_CONFIG+0x03)
+#define NODE_BME280_SET               *(char*)(NODE_HW_CONFIG)
+#define NODE_MAX44009_SET               *(char*)(NODE_HW_CONFIG+0x01)
+
+#define NODE_MAGNET_B_SET               *(char*)(NODE_HW_CONFIG+0x02)
+#define NODE_MAGNET_B_INTERRUPT			*(char*)(NODE_HW_CONFIG+0x03)
+#define NODE_MAGNET_D_SET               *(char*)(NODE_HW_CONFIG+0x04)
+#define NODE_MAGNET_D_INTERRUPT         *(char*)(NODE_HW_CONFIG+0x05)
+
+
 
 void rf_alive_bcast()
 {
@@ -111,7 +121,6 @@ void i2c_user_Tx_Callback(BYTE *userdata,BYTE size)
 	printf("\n\r");
         */
 }
-
 void i2c_user_Error_Callback(BYTE l_sr2)
 {
 	if(l_sr2 & 0x01)
@@ -197,16 +206,6 @@ void Initialise_Test_GPIO_A2()
     PA_CR1_bit.C12 = 1; //  1: Push-pull
 }
 
-void GPIO_B3_High()
-{
-    PB_ODR_bit.ODR3 = 1;
-}
-
-void GPIO_B3_Low()
-{
-    PB_ODR_bit.ODR3 = 0;
-}
-
 void configure_All_PIO()
 {
 	//A0 - SWIM
@@ -268,11 +267,13 @@ void configure_All_PIO()
 	}
 	else
 	{
+		//issue floating consumption, set to input
+
 		//C0 - I2C SDA
-		PC_DDR_bit.DDR0 = 1;//output
+		PC_DDR_bit.DDR0 = 0;
 		PC_ODR_bit.ODR0 = 0;//Low
 		//C1 - I2C SCL
-		PC_DDR_bit.DDR1 = 1;//output
+		PC_DDR_bit.DDR1 = 0;
 		PC_ODR_bit.ODR1 = 0;//Low
 	}
         //C2-C3 : do not exist
@@ -347,8 +348,9 @@ void check_minimal_Power()
 
 int main( void )
 {
-	//check_minimal_Power();
-          
+	#if DEBUG_POWER == 1
+	check_minimal_Power();
+	#endif
 	NodeId = *NODE_ID;
 
 	configure_All_PIO();
@@ -363,12 +365,13 @@ int main( void )
 		I2C_Init();
 	}
 
-	sleep();						//this is a low power halt sleep 
 
 	#if UART_ENABLE == 1
 		SYSCFG_RMPCR1_USART1TR_REMAP = 1; // Remap 01: USART1_TX on PA2 and USART1_RX on PA3
 		uart_init();//Tx only
 	#endif
+
+	sleep();						//this is a low power halt sleep 
 
 	nRF_Config();
     nRF_SelectChannel(RF_CHANNEL);

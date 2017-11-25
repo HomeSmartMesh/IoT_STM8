@@ -629,3 +629,24 @@ __interrupt void I2C_IRQ()
 #else
   #error needs a file deviceType.h with DEVICE_STM8L 1  or S 1 defined
 #endif
+
+void I2C_Scan()
+{
+	BYTE add = 0;
+	BYTE regAdd = 0xD0;
+	BYTE val;
+	for(add = 0;add<128;add++)
+	{
+		I2C_Write(add, &regAdd,1);
+		delay_100us();
+		I2C_Read(add, &val,1); 
+		delay_100us();
+
+		printf("add ");
+		UARTPrintfHex(add);
+		printf(" @0xD0 : ");
+		UARTPrintfHex(val);
+		printf("\n");
+	}
+}
+

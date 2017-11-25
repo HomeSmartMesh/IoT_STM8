@@ -46,3 +46,5 @@ nRF_Transmit_Wait_Down()
 __________________________________________________________
 STM8L dies 70 us after setting CE pulse
 
+I2C not set configures the pio to output which consumes current floating consumption
+

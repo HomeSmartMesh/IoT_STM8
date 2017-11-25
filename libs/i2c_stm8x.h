@@ -72,6 +72,8 @@ void I2C_Read(BYTE slave_7msb_Address, BYTE* buffer,BYTE count);
 
 void I2C_Write(BYTE slave_7msb_Address, BYTE* buffer,BYTE count);
 
+void I2C_Scan();
+
 void i2c_user_Rx_Callback(BYTE *userdata,BYTE size);
 
 void i2c_user_Tx_Callback(BYTE *userdata,BYTE size);
