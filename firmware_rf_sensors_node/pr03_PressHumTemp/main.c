@@ -67,11 +67,11 @@ BYTE tx_data[RF_MAX_DATASIZE];
 
 
 
-void rf_alive_bcast()
+void rf_bcast_byte(unsigned char payload)
 {
     tx_data[rfi_size] = rfi_broadcast_header_size;
     tx_data[rfi_ctr] = rf_ctr_Broadcast | 2;//time to live is 2
-    tx_data[rfi_pid] = rf_pid_alive;
+    tx_data[rfi_pid] = payload;//rf_pid_alive;
     tx_data[rfi_src] = NodeId;
     crc_set(tx_data);
    
@@ -394,7 +394,7 @@ void check_minimal_Power()
 	{
 		__halt();
 		DEBUG_PIO = 1;
-		rf_alive_bcast();
+		rf_bcast_byte(rf_pid_alive);
 	}
 }
 
@@ -438,7 +438,24 @@ int main( void )
 	//
 	while (1)
 	{
-		if(counter == 0)
+		if(counter >= 2)
+		{
+			if(counter % 2 == 0)
+			{
+				if(NODE_BME280_SET == 1)
+				{
+					rf_bme280_bcast();//no effect if no i2C
+				}
+			}
+			else
+			{
+				if(NODE_MAX44009_SET == 1)
+				{
+					rf_light_bcast();//no effect if no NODE_MAX44009_SET
+				}
+			}
+		}
+		else if(counter == 0)
 		{
 			//first value workaround : first value read as null
 			bme280_force_OneMeasure(1,1,1);//Pressure, Temperature, Humidity
@@ -449,21 +466,11 @@ int main( void )
 			startup_info();
 			#endif
 		}
+		else if(counter == 1)
+		{
+			rf_bcast_byte(rf_pid_reset);
+		}
 		
-		if(counter % 2 == 0)
-		{
-			if(NODE_BME280_SET == 1)
-			{
-				rf_bme280_bcast();//no effect if no i2C
-			}
-		}
-		else
-		{
-			if(NODE_MAX44009_SET == 1)
-			{
-				rf_light_bcast();//no effect if no NODE_MAX44009_SET
-			}
-		}
 		counter++;
 		if(counter == 200)
 		{
