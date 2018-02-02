@@ -140,7 +140,7 @@ BYTE bme280_wait_measures()
     BYTE count = 0;
    do
    {
-     status = bme280_read_reg(0xF2);//status : 0xF3
+     status = bme280_read_reg(0xF3);//status : 0xF3
      count++;
    }while(((status & 0x08) != 0) && (count<20));
     
