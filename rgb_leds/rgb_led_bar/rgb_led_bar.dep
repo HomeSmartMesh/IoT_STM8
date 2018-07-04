@@ -6,76 +6,67 @@
   <configuration>
     <name>Debug</name>
     <outputs>
-      <file>$PROJ_DIR$\..\..\libs\rf_protocol.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\WS2812B.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\uart_stm8x.o</file>
-      <file>$TOOLKIT_DIR$\inc\iostm8s103f3.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\mainBAR.pbi</file>
-      <file>$TOOLKIT_DIR$\lib\dbgstm8smd.a</file>
-      <file>$PROJ_DIR$\Debug\Obj\uart.o</file>
-      <file>$PROJ_DIR$\Debug\Obj\clock_led.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\uart_stm8x.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\uart.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\WS2812B.o</file>
-      <file>$PROJ_DIR$\Debug\Exe\rgb_led_bar.out</file>
-      <file>$TOOLKIT_DIR$\config\lnkstm8s103f3.icf</file>
-      <file>$TOOLKIT_DIR$\lib\dlstm8smn.a</file>
-      <file>$TOOLKIT_DIR$\inc\io_macros.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\mainBAR.o</file>
-      <file>$PROJ_DIR$\Debug\Obj\clock_led.o</file>
-      <file>$TOOLKIT_DIR$\inc\c\intrinsics.h</file>
-      <file>$PROJ_DIR$\..\..\libs\clock_led.c</file>
-      <file>$PROJ_DIR$\..\..\libs\clock_led.h</file>
-      <file>$PROJ_DIR$\..\..\libs\uart.h</file>
+      <file>$PROJ_DIR$\uart_config.h</file>
       <file>$PROJ_DIR$\..\..\libs\uart_stm8x.h</file>
+      <file>$PROJ_DIR$\..\..\libs\uart_stm8x.c</file>
       <file>$PROJ_DIR$\mainBAR.c</file>
       <file>$PROJ_DIR$\deviceType.h</file>
-      <file>$PROJ_DIR$\..\..\libs\WS2812B.c</file>
-      <file>$PROJ_DIR$\..\..\libs\uart.c</file>
-      <file>$PROJ_DIR$\uart_config.h</file>
-      <file>$PROJ_DIR$\..\..\libs\uart_stm8x.c</file>
+      <file>$PROJ_DIR$\..\..\libs\clock_led.h</file>
       <file>$PROJ_DIR$\..\..\libs\WS2812B.h</file>
       <file>$PROJ_DIR$\rgb_config.h</file>
+      <file>$PROJ_DIR$\..\..\libs\clock_led.c</file>
+      <file>$PROJ_DIR$\..\..\libs\WS2812B.c</file>
       <file>$PROJ_DIR$\..\..\libs\commonTypes.h</file>
+      <file>$PROJ_DIR$\..\..\libs\uart.c</file>
+      <file>$PROJ_DIR$\..\..\libs\uart.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\clock_led.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\uart.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\uart_stm8x.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\WS2812B.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\WS2812B.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\uart.pbi</file>
+      <file>$PROJ_DIR$\Debug\Exe\rgb_led_bar.out</file>
+      <file>$PROJ_DIR$\..\..\libs\rf_protocol.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\uart_stm8x.o</file>
+      <file>$TOOLKIT_DIR$\inc\iostm8s103f3.h</file>
+      <file>$TOOLKIT_DIR$\lib\dbgstm8smd.a</file>
+      <file>$TOOLKIT_DIR$\inc\io_macros.h</file>
+      <file>$TOOLKIT_DIR$\lib\dlstm8smn.a</file>
+      <file>$PROJ_DIR$\Debug\Obj\mainBAR.o</file>
+      <file>$TOOLKIT_DIR$\config\lnkstm8s103f3.icf</file>
+      <file>$PROJ_DIR$\Debug\Obj\clock_led.o</file>
+      <file>$TOOLKIT_DIR$\inc\c\intrinsics.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\mainBAR.pbi</file>
     </outputs>
     <file>
       <name>[ROOT_NODE]</name>
       <outputs>
         <tool>
           <name>ILINK</name>
-          <file> 11</file>
+          <file> 19</file>
         </tool>
       </outputs>
     </file>
     <file>
-      <name>$PROJ_DIR$\Debug\Exe\rgb_led_bar.out</name>
-      <inputs>
-        <tool>
-          <name>ILINK</name>
-          <file> 12 16 15 6 2 10 13 5</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\..\..\libs\clock_led.c</name>
+      <name>$PROJ_DIR$\..\..\libs\uart_stm8x.c</name>
       <outputs>
         <tool>
-          <name>ICCSTM8</name>
-          <file> 16</file>
+          <name>BICOMP</name>
+          <file> 15</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 7</file>
+          <name>ICCSTM8</name>
+          <file> 21</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
-          <name>ICCSTM8</name>
-          <file> 19 30 23 3 14</file>
+          <name>BICOMP</name>
+          <file> 4 0 1 22 10 24</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 30 23 3 19 14</file>
+          <name>ICCSTM8</name>
+          <file> 10 0 4 1 22 24</file>
         </tool>
       </inputs>
     </file>
@@ -83,22 +74,45 @@
       <name>$PROJ_DIR$\mainBAR.c</name>
       <outputs>
         <tool>
-          <name>ICCSTM8</name>
-          <file> 15</file>
+          <name>BICOMP</name>
+          <file> 30</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 4</file>
+          <name>ICCSTM8</name>
+          <file> 26</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
-          <name>ICCSTM8</name>
-          <file> 19 30 20 26 21 28 29</file>
+          <name>BICOMP</name>
+          <file> 10 0 6 12 7 1 5</file>
         </tool>
         <tool>
+          <name>ICCSTM8</name>
+          <file> 5 10 12 0 1 6 7</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\libs\clock_led.c</name>
+      <outputs>
+        <tool>
           <name>BICOMP</name>
-          <file> 30 26 28 20 29 21 19</file>
+          <file> 13</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 28</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 10 4 22 5 24</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 5 10 4 22 24</file>
         </tool>
       </inputs>
     </file>
@@ -106,22 +120,22 @@
       <name>$PROJ_DIR$\..\..\libs\WS2812B.c</name>
       <outputs>
         <tool>
-          <name>ICCSTM8</name>
-          <file> 10</file>
+          <name>BICOMP</name>
+          <file> 16</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 1</file>
+          <name>ICCSTM8</name>
+          <file> 17</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
-          <name>ICCSTM8</name>
-          <file> 28 30 3 14 17 19 29 0 20 26 21</file>
+          <name>BICOMP</name>
+          <file> 12 10 22 7 24 6 29 5 20 1 0</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 20 30 3 29 14 28 17 19 0 21 26</file>
+          <name>ICCSTM8</name>
+          <file> 6 10 22 24 29 5 7 20 12 0 1</file>
         </tool>
       </inputs>
     </file>
@@ -129,45 +143,31 @@
       <name>$PROJ_DIR$\..\..\libs\uart.c</name>
       <outputs>
         <tool>
-          <name>ICCSTM8</name>
-          <file> 6</file>
+          <name>BICOMP</name>
+          <file> 18</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 9</file>
+          <name>ICCSTM8</name>
+          <file> 14</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
-          <name>ICCSTM8</name>
-          <file> 23 26 20 30 21 19</file>
+          <name>BICOMP</name>
+          <file> 4 0 12 5 10 1</file>
         </tool>
         <tool>
-          <name>BICOMP</name>
-          <file> 23 26 20 19 30 21</file>
+          <name>ICCSTM8</name>
+          <file> 4 0 12 10 1 5</file>
         </tool>
       </inputs>
     </file>
     <file>
-      <name>$PROJ_DIR$\..\..\libs\uart_stm8x.c</name>
-      <outputs>
-        <tool>
-          <name>ICCSTM8</name>
-          <file> 2</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 8</file>
-        </tool>
-      </outputs>
+      <name>$PROJ_DIR$\Debug\Exe\rgb_led_bar.out</name>
       <inputs>
         <tool>
-          <name>ICCSTM8</name>
-          <file> 30 26 23 21 3 14</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 23 26 21 3 30 14</file>
+          <name>ILINK</name>
+          <file> 27 28 26 14 21 17 25 23</file>
         </tool>
       </inputs>
     </file>

@@ -26,7 +26,7 @@
 
 BYTE p2p_message[31];//size not included
 
-BYTE * p2p_payload = p2p_message + rfi_header_size;
+BYTE * p2p_payload = p2p_message + rfi_p2p_header_size;
 
 #define p2p_msg_pl (p2p_message+3)
 
@@ -62,9 +62,9 @@ void send_ack(BYTE *rxData)
     p2p_message[rfi_pid] |=  P2P_BIT7_DIRECTED | P2P_BIT6_MSGACK | P2P_BIT5_ACK;
 	p2p_message[rfi_src] = NodeId;//Source
 	p2p_message[rfi_dst] = rxData[rfi_src];//Dest is the Rx Source
-    p2p_message[rfi_size] = rfi_header_size;//Empty payload
+    p2p_message[rfi_size] = rfi_p2p_header_size;//Empty payload
     crc_set(p2p_message);
-    BYTE rf_msg_size = rfi_header_size + crc_size;
+    BYTE rf_msg_size = rfi_p2p_header_size + crc_size;
 	nRF_Transmit_Wait_Rx(p2p_message,rf_msg_size);
     //printf("sent Ack : ");printf_tab(p2p_message,rf_msg_size);printf_eol();
 
@@ -78,7 +78,7 @@ void retransmit(BYTE timeToLive, BYTE *rxData,BYTE rx_DataSize)
 	delay_ms(delay);
 	if(rx_DataSize < 30)//no crc included
 	{
-		*pData = rf_pid_0xDF_retransmit;
+		*pData = 0xDF;//retrensmit id
         pData++;
 		*pData = timeToLive;
         pData++;
@@ -95,7 +95,7 @@ void retransmit(BYTE timeToLive, BYTE *rxData,BYTE rx_DataSize)
 BYTE check_bridge_retransmissions(BYTE *rxData,BYTE rx_DataSize)
 {
     BYTE is_retransmitted = 1;
-    if(rxData[0] == rf_pid_0xDF_retransmit)
+    if(rxData[0] == 0xDF)//retrensmit id
     {
         if(     ( (rxData[rfi_retransmit_header_size+rfi_pid] & P2P_BROADCAST_MASK) == P2P_BIT7_DIRECTED )
                 &&
@@ -148,7 +148,7 @@ void userRxCallBack(BYTE *rxData,BYTE rx_DataSize)
             return;//it is not directed to this node and just retransmitted
         }
     #endif
-    if(rxData[0] == rf_pid_0xDF_retransmit)//then just "remove the retransmission header" then "consume it"
+        if(rxData[0] == 0xDF)//retransmit : then just "remove the retransmission header" then "consume it"
     {
         printf("RTX:");printf_uint(rxData[1]);printf(";");
         rxData+=2;
@@ -184,7 +184,7 @@ void userRxCallBack(BYTE *rxData,BYTE rx_DataSize)
                 //printf("rx message:");printf_tab(rxData,rx_DataSize+crc_size);printf_eol();
                 #if P2P_MESSAGE_CALLBACK == 1
                 rxData[rfi_pid]&= 0x01F;// clear bit7, bit6, bit5 and keep id
-                rf_Message_CallBack(rxData,rxData+rfi_header_size,rx_DataSize-rfi_header_size);
+                rf_Message_CallBack(rxData,rxData+rfi_p2p_header_size,rx_DataSize-rfi_p2p_header_size);
                 #endif
             }
             else//it's an acknowledge
@@ -234,7 +234,7 @@ BYTE p2p_send(BYTE payload_size)
 {
 	BYTE success = 0;
 	BYTE i = 0;
-    BYTE size = payload_size + rfi_header_size;//this size does not include the crc
+    BYTE size = payload_size + rfi_p2p_header_size;//this size does not include the crc
     p2p_message[rfi_size] = size;//complete the message with the correct size first
     //printf("tx message:");printf_tab(p2p_message,6);printf_eol();
     //the crc will be set after the header and payload
@@ -269,7 +269,7 @@ BYTE rf_rgb_set(BYTE Dest,RGBColor_t Color)
     p2p_message[rfi_src] = NodeId;
     p2p_message[rfi_dst] = Dest;
     BYTE PayloadSize;
-    rgb_encode_rf(Color,p2p_message+rfi_payload_offset,&PayloadSize);
+    rgb_encode_rf(Color,p2p_message+rfi_p2p_payload_offset,&PayloadSize);
     
     return p2p_send(PayloadSize);
 }

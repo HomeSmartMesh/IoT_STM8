@@ -53,7 +53,7 @@ int main( void )
       printf("Color Loop. ");
       printf_uint(NB_LEDS);
       printf_ln(" Leds GREEN to BLUE then to RED"); 
-      rgb_Loop_BlueRedBlue(NB_LEDS);
+      rgb_Loop_BlueRedBlue(NB_LEDS,200);
 
       printf("Cycle:");
       printf_uint(AliveActiveCounter);

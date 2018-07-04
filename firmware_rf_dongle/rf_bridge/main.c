@@ -70,7 +70,7 @@ void rf_Message_CallBack(BYTE* rxHeader,BYTE *rxPayload,BYTE rx_PayloadSize)
 void rf_reset_bcast()
 {
     tx_data[rfi_size] = rfi_broadcast_header_size;
-    tx_data[rfi_pid] = rf_pid_0xC9_reset;
+    tx_data[rfi_pid] = rf_pid_reset;
     tx_data[rfi_src] = NodeId;
     crc_set(tx_data);
    
